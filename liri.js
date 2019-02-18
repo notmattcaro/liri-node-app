@@ -95,7 +95,16 @@ function movieThis() {
 }
 
 function doWhatItSays() {
-    console.log("do-what-it-says");
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        let dataArr = data.split(",");
+        for (let x = 0; x < dataArr.length; x++) {
+            userQuery = dataArr[x];
+            spotifyThis();
+        }
+    });
 }
 
 //switch results depending on input
